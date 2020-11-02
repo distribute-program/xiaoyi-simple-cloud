@@ -1,0 +1,66 @@
+server:
+  servlet:
+    context-path: /cloud-user
+  port: 9001
+spring:
+  application:
+    name: cloud-user
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.alibaba.druid.proxy.DruidDriver
+    druid:
+      url: jdbc:mysql://47.93.160.81:3306/kzcrm_DB?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+      username: dev
+      password: FEgFdAn5/BSqZZrDRueqU1FdsUf8On7IArUnosHXGWobgnSA6J0Y8WoLKDaovIRXKEOHSE6q7PZfo6PVe1of2Q==
+      filters: stat
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      publicKey: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAIzLtHVlAowuY3OkInSCEZES3oG04zq22qbd1m9XCvH2I6COnOMb1La/alT/OVxSb0rkbt08fpbBbQr/KsF61IcCAwEAAQ==
+      connection-properties: config.decrypt=true;config.decrypt.key=${spring.datasource.druid.publicKey}
+      initial-size: 8
+      min-idle: 8
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: false
+      max-pool-prepared-statement-per-connection-size: 20
+      filter:
+        config:
+          enabled: true
+  cloud:
+    nacos:
+      discovery:
+        # server-addr: 101.200.126.8:8848
+        server-addr: 192.168.101.31:8848,192.168.101.31:8847,192.168.101.31:8846
+        cluster-name: cloud-user
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+xiaoyi-cloud:
+  doc:
+    api-name: ${spring.application.name}
+    title: XIAOYI-CLOUD_接口文档
+    description: XIAOYI-CLOUD
+    author: yuanLong Wei
+    email: weiyuanlong@quickbusiness.cn
+    version: 1.0
+    group-name: cloud-user
+xxl:
+  job:
+    # admin-addresses: http://101.200.126.8:8080/xxl-job-admin
+    admin-addresses: http://127.0.0.1:8080/xxl-job-admin
+    app-name: ${spring.application.name}
+    ip:
+    port: 9998
+    log-path: /data/applogs/xxl-job/jobhandler
+    log-retention-days: 30
+

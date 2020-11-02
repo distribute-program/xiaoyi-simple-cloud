@@ -1,0 +1,22 @@
+server:
+  servlet:
+    context-path: /cloud-order
+  port: 9101
+spring:
+  application:
+    name: cloud-order
+  cloud:
+    nacos:
+      discovery:
+        # server-addr: 101.200.126.8:8848
+        server-addr: 192.168.101.31:8848,192.168.101.31:8847,192.168.101.31:8846
+        cluster-name: cloud-order
+xiaoyi-cloud:
+  doc:
+    api-name: ${spring.application.name}
+    title: XIAOYI-CLOUD-ORDER_接口文档
+    description: XIAOYI-CLOUD-ORDER
+    author: yuanLong Wei
+    email: weiyuanlong@quickbusiness.cn
+    version: 1.0
+    group-name: cloud-order
